@@ -6,10 +6,15 @@ import '../models/veiculo.dart';
 import '../models/veiculo_list.dart';
 
 class VeiculoGrid extends StatelessWidget {
+  final bool showFavoriteOnly;
+
+  VeiculoGrid(this.showFavoriteOnly);
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<VeiculoList>(context);
-    final List<Veiculo> loadVeiculos = provider.items;
+    final List<Veiculo> loadVeiculos =
+        showFavoriteOnly ? provider.favoriteItems : provider.items;
     return GridView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: loadVeiculos.length,

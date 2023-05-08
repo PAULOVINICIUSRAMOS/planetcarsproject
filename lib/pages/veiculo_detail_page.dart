@@ -32,6 +32,32 @@ class VeiculoDetailsPage extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              width: double.infinity,
+              child: Text(
+                veiculo.description,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 15),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              "FICHA TÉCNICA",
+              style: TextStyle(fontSize: 16),
+            ),
+            Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    children: [
+                      Text('MARCA: ${ veiculo.brand}'),
+                    ],
+                  ),
+                ),
+            )
           ],
         ),
       ),

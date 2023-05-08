@@ -3,8 +3,15 @@ import '../components/veiculo_grid.dart';
 
 enum FilterOptions { Favorite, All }
 
-class VeiculosOverviewPage extends StatelessWidget {
+class VeiculosOverviewPage extends StatefulWidget {
   const VeiculosOverviewPage({Key? key}) : super(key: key);
+
+  @override
+  _VeiculosOverviewPageState createState() => _VeiculosOverviewPageState();
+}
+
+class _VeiculosOverviewPageState extends State<VeiculosOverviewPage> {
+  bool _showFavoriteOnly = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +32,21 @@ class VeiculosOverviewPage extends StatelessWidget {
                 child: Text('Todos'),
               )
             ],
-            onSelected: (FilterOptions selectedValue) {},
+            onSelected: (FilterOptions selectedValue) {
+              setState(
+                () {
+                  if (selectedValue == FilterOptions.Favorite) {
+                    _showFavoriteOnly = true;
+                  } else {
+                    _showFavoriteOnly = false;
+                  }
+                },
+              );
+            },
           ),
         ],
       ),
-      body: VeiculoGrid(),
+      body: VeiculoGrid(_showFavoriteOnly),
     );
   }
 }
