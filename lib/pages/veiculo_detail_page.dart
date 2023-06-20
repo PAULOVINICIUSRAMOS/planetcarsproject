@@ -10,17 +10,37 @@ class VeiculoDetailsPage extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Veiculo;
     return Scaffold(
       appBar: AppBar(
-        title: Text(veiculo.title),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 300,
-              child: Image.network(
-                veiculo.imageUrl,
-                fit: BoxFit.cover,
-              ),
+            Stack(
+              children: [
+                Container(
+                  height: 300,
+                  child: Image.network(
+                    veiculo.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.black54,
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      veiculo.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Text(
@@ -41,10 +61,10 @@ class VeiculoDetailsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Align(
+            const Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Text(
                   "FICHA TÉCNICA",
                   style: TextStyle(fontSize: 16),
@@ -60,25 +80,29 @@ class VeiculoDetailsPage extends StatelessWidget {
                   children: [
                     Text(
                       'MODELO: ${veiculo.title}',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
                       'MARCA: ${veiculo.brand}',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
                       'COMBUSTÍVEL: ${veiculo.fuel}',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'TOP SPEED: ${veiculo.topSpeed} \ km/h',
-                      style: TextStyle(fontSize: 16),
+                      'PREÇO: R\$ ${veiculo.price}',
+                      style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
-                    // Adicione mais textos aqui
+                    Text(
+                      'TOP SPEED: ${veiculo.topSpeed}',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
